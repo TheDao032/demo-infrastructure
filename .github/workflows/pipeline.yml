@@ -14,7 +14,7 @@ jobs:
       ACCOUNT: account-dev
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
-      WORKSPACE: ${{ github.actor }}
+      WORKSPACE: thedao032
       ACCOUNT_ID: "699193863488"
       REGION: "ap-southeast-1"
       ENV: dev
@@ -27,7 +27,7 @@ jobs:
       ACCOUNT: account-dev
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
-      WORKSPACE: ${{ github.actor }}
+      WORKSPACE: thedao032
       ACCOUNT_ID: "699193863488"
       REGION: "ap-southeast-1"
       ENV: dev
@@ -42,7 +42,7 @@ jobs:
       ACCOUNT: account-dev
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
-      WORKSPACE: ${{ github.actor }}
+      WORKSPACE: thedao032
       ACCOUNT_ID: "699193863488"
       REGION: "ap-southeast-1"
       ENV: staging
@@ -65,7 +65,7 @@ jobs:
       ACCOUNT: account-prod
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
-      WORKSPACE: ${{ github.actor }}
+      WORKSPACE: thedao032
       ACCOUNT_ID: "699193863488"
       REGION: "ap-southeast-1"
       ENV: prod
