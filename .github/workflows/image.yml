@@ -30,4 +30,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/TheDao032/demo-infrastructure
+          tags: ghcr.io/thedao/demo-infrastructure
