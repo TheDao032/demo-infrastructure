@@ -1,0 +1,47 @@
+name: Terragrunt Plan
+on:
+  workflow_call:
+    inputs:
+      ACCOUNT:
+        required: true
+        type: string
+      ACCOUNT_ID:
+        required: true
+        type: string
+      REGION:
+        required: true
+        type: string
+      ENV:
+        required: true
+        type: string
+
+jobs:
+  plan:
+    name: Terragrunt Plan
+    runs-on: ubuntu-latest
+    container: ghrc.io/thedao/demo-infrastructure
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+          role-to-assume: arn:aws:iam::${{ inputs.ACCOUNT_ID }}:role/AdminAccess
+          role-duration-seconds: 3600
+          role-session-name: github
+
+      - name: Plan
+        id: terragrunt-plan
+        working-directory: terraform/environments/${{ inputs.ACCOUNT }}/${{ inputs.REGION }}/${{ inputs.env }}
+        run: |
+          terragrunt run-all plan -no-color --terragrunt-non-interactive --terragrunt-include-external-dependencies | tee plan-${{ inputs.ENV }}.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: terragrunt
+          path: terraform/environments/${{ inputs.ACCOUNT }}/${{ inputs.REGION }}/${{ inputs.env }}/plan-${{ inputs.ENV }}.txt
+

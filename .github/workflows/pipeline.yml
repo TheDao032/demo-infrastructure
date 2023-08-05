@@ -1,0 +1,67 @@
+name: Root Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terragrunt-plan-dev:
+    name: Dev
+    uses: ./.github/workflows/terragrunt-plan.yml
+    with:
+      ACCOUNT: account-dev
+      ACCOUNT_ID: "699193863488"
+      REGION: ap-southeast-1
+      ENV: dev
+    secrets: inherit
+
+  terragrunt-apply-dev:
+    name: Dev
+    uses: ./.github/workflows/terragrunt-apply.yml
+    with:
+      ACCOUNT: account-dev
+      ACCOUNT_ID: "699193863488"
+      REGION: "ap-southeast-1"
+      ENV: dev
+    secrets: inherit
+
+  terragrunt-plan-staging:
+    name: Staging
+    uses: ./.github/workflows/terragrunt-plan.yml
+    with:
+      ACCOUNT: account-dev
+      ACCOUNT_ID: "699193863488"
+      REGION: ap-southeast-1
+      ENV: staging
+    secrets: inherit
+
+  # terragrunt-apply-staging:
+  #   name: Staging
+  #   uses: ./.github/workflows/terragrunt-apply.yml
+  #   with:
+  #     ACCOUNT: account-dev
+  #     ACCOUNT_ID: "699193863488"
+  #     REGION: "ap-southeast-1"
+  #     ENV: staging
+  #   secrets: inherit
+
+  terragrunt-plan-prod:
+    name: Production
+    uses: ./.github/workflows/terragrunt-plan.yml
+    with:
+      ACCOUNT: account-prod
+      ACCOUNT_ID: "699193863488"
+      REGION: ap-southeast-1
+      ENV: prod
+    secrets: inherit
+
+  # terragrunt-apply-prod:
+  #   name: Production
+  #   uses: ./.github/workflows/terragrunt-apply.yml
+  #   with:
+  #     ACCOUNT: account-prod
+  #     ACCOUNT_ID: "699193863488"
+  #     REGION: "ap-southeast-1"
+  #     ENV: prod
+  #   secrets: inherit

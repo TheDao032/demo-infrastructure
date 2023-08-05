@@ -1,0 +1,47 @@
+name: Terragrunt Manual Apply
+
+on:
+  workflow_dispatch:
+    inputs:
+      ENV:
+        description: Environment Choices To Manually Apply
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+
+jobs:
+  terragrunt-apply-dev:
+    name: Dev
+    uses: ./.github/workflows/terragrunt-apply.yml
+    if: "${{ github.event.inputs.ENV == 'dev' }}"
+    with:
+      ACCOUNT: account-dev
+      ACCOUNT_ID: '699193863488'
+      REGION: ap-southeast-1
+      ENV: dev
+    secrets: inherit
+
+  terragrunt-apply-staging:
+    name: Staging
+    uses: ./.github/workflows/terragrunt-apply.yml
+    if: "${{ github.event.inputs.ENV == 'staging' }}"
+    with:
+      ACCOUNT: account-dev
+      ACCOUNT_ID: '699193863488'
+      REGION: ap-southeast-1
+      ENV: staging
+    secrets: inherit
+
+  # terragrunt-apply-prod:
+  #   name: Staging
+  #   uses: ./.github/workflows/terragrunt-apply.yml
+  #   if: "${{ github.event.inputs.ENV == 'prod' }}"
+  #   with:
+  #     ACCOUNT: account-prod
+  #     ACCOUNT_ID: '699193863488'
+  #     REGION: ap-southeast-1
+  #     ENV: prod
+  #   secrets: inherit
