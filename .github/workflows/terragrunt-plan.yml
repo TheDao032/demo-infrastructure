@@ -14,13 +14,7 @@ on:
       ENV:
         required: true
         type: string
-      REGISTRY:
-        required: true
-        type: string
-      WORKSPACE:
-        required: true
-        type: string
-      IMAGE_NAME:
+      IMAGE:
         required: true
         type: string
 
@@ -28,7 +22,7 @@ jobs:
   plan:
     name: Terragrunt Plan
     runs-on: ubuntu-latest
-    container: ${{ inputs.REGISTRY }}/${{ inputs.WORKSPACE }}/${{ inputs.IMAGE_NAME }}
+    container: ${{ inputs.IMAGE }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3

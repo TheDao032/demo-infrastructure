@@ -12,9 +12,7 @@ jobs:
     uses: ./.github/workflows/terragrunt-plan.yml
     with:
       ACCOUNT: account-dev
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
-      WORKSPACE: thedao032
+      IMAGE: ghcr.io/thedao032/demo-infrastructure
       ACCOUNT_ID: "699193863488"
       REGION: "ap-southeast-1"
       ENV: dev
@@ -25,9 +23,7 @@ jobs:
     uses: ./.github/workflows/terragrunt-apply.yml
     with:
       ACCOUNT: account-dev
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
-      WORKSPACE: thedao032
+      IMAGE: ghcr.io/thedao032/demo-infrastructure
       ACCOUNT_ID: "699193863488"
       REGION: "ap-southeast-1"
       ENV: dev
@@ -40,9 +36,7 @@ jobs:
     uses: ./.github/workflows/terragrunt-plan.yml
     with:
       ACCOUNT: account-dev
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
-      WORKSPACE: thedao032
+      IMAGE: ghcr.io/thedao032/demo-infrastructure
       ACCOUNT_ID: "699193863488"
       REGION: "ap-southeast-1"
       ENV: staging
@@ -63,9 +57,7 @@ jobs:
     uses: ./.github/workflows/terragrunt-plan.yml
     with:
       ACCOUNT: account-prod
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
-      WORKSPACE: thedao032
+      IMAGE: ghcr.io/thedao032/demo-infrastructure
       ACCOUNT_ID: "699193863488"
       REGION: "ap-southeast-1"
       ENV: prod
