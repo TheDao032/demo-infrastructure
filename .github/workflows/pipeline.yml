@@ -5,17 +5,24 @@ on:
     branches:
       - main
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  WORKSPACE: ${{ github.actor }}
+
+
 jobs:
   terragrunt-plan-dev:
     name: Dev
     uses: ./.github/workflows/terragrunt-plan.yml
     with:
       ACCOUNT: account-dev
-      ACCOUNT_ID: "699193863488"
-      REGION: ap-southeast-1
+      ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       ENV: dev
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
+      REGISTRY: ${{ env.REGISTRY }}
+      IMAGE_NAME: ${{ env.IMAGE_NAME }}
+      WORKSPACE: ${{ env.WORKSPACE }}
     secrets: inherit
 
   terragrunt-apply-dev:
@@ -23,11 +30,12 @@ jobs:
     uses: ./.github/workflows/terragrunt-apply.yml
     with:
       ACCOUNT: account-dev
-      ACCOUNT_ID: "699193863488"
-      REGION: "ap-southeast-1"
+      ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       ENV: dev
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
+      REGISTRY: ${{ env.REGISTRY }}
+      IMAGE_NAME: ${{ env.IMAGE_NAME }}
+      WORKSPACE: ${{ env.WORKSPACE }}
     secrets: inherit
     needs:
       terragrunt-plan-dev
@@ -37,11 +45,12 @@ jobs:
     uses: ./.github/workflows/terragrunt-plan.yml
     with:
       ACCOUNT: account-dev
-      ACCOUNT_ID: "699193863488"
-      REGION: ap-southeast-1
+      ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       ENV: staging
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
+      REGISTRY: ${{ env.REGISTRY }}
+      IMAGE_NAME: ${{ env.IMAGE_NAME }}
+      WORKSPACE: ${{ env.WORKSPACE }}
     secrets: inherit
 
   # terragrunt-apply-staging:
@@ -62,8 +71,9 @@ jobs:
       ACCOUNT_ID: "699193863488"
       REGION: ap-southeast-1
       ENV: prod
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
+      REGISTRY: ${{ env.REGISTRY }}
+      IMAGE_NAME: ${{ env.IMAGE_NAME }}
+      WORKSPACE: ${{ env.WORKSPACE }}
     secrets: inherit
 
   # terragrunt-apply-prod:
