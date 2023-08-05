@@ -9,6 +9,8 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   WORKSPACE: ${{ github.actor }}
+  ACCOUNT_ID: "699193863488"
+  REGION: "ap-southeast-1"
 
 
 jobs:
@@ -17,8 +19,8 @@ jobs:
     uses: ./.github/workflows/terragrunt-plan.yml
     with:
       ACCOUNT: account-dev
-      ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      ACCOUNT_ID: ${{ env.ACCOUNT_ID }}
+      REGION: ${{ env.REGION }}
       ENV: dev
       REGISTRY: ${{ env.REGISTRY }}
       IMAGE_NAME: ${{ env.IMAGE_NAME }}
@@ -30,8 +32,8 @@ jobs:
     uses: ./.github/workflows/terragrunt-apply.yml
     with:
       ACCOUNT: account-dev
-      ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      ACCOUNT_ID: ${{ env.ACCOUNT_ID }}
+      REGION: ${{ env.REGION }}
       ENV: dev
       REGISTRY: ${{ env.REGISTRY }}
       IMAGE_NAME: ${{ env.IMAGE_NAME }}
@@ -45,8 +47,8 @@ jobs:
     uses: ./.github/workflows/terragrunt-plan.yml
     with:
       ACCOUNT: account-dev
-      ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      ACCOUNT_ID: ${{ env.ACCOUNT_ID }}
+      REGION: ${{ env.REGION }}
       ENV: staging
       REGISTRY: ${{ env.REGISTRY }}
       IMAGE_NAME: ${{ env.IMAGE_NAME }}
@@ -68,8 +70,8 @@ jobs:
     uses: ./.github/workflows/terragrunt-plan.yml
     with:
       ACCOUNT: account-prod
-      ACCOUNT_ID: "699193863488"
-      REGION: ap-southeast-1
+      ACCOUNT_ID: ${{ env.ACCOUNT_ID }}
+      REGION: ${{ env.REGION }}
       ENV: prod
       REGISTRY: ${{ env.REGISTRY }}
       IMAGE_NAME: ${{ env.IMAGE_NAME }}
