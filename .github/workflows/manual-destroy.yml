@@ -1,10 +1,10 @@
-name: Terragrunt Manual Apply
+name: Terragrunt Manual Destroy
 
 on:
   workflow_dispatch:
     inputs:
       ENV:
-        description: Environment Choices To Manually Apply
+        description: Environment Choices To Manually Destroy
         required: true
         type: choice
         options:
@@ -13,7 +13,7 @@ on:
           - prod
 
 jobs:
-  terragrunt-apply-dev:
+  terragrunt-destroy-dev:
     name: Dev
     uses: ./.github/workflows/terragrunt-destroy.yml
     if: "${{ github.event.inputs.ENV == 'dev' }}"
@@ -24,7 +24,7 @@ jobs:
       ENV: dev
     secrets: inherit
 
-  terragrunt-apply-staging:
+  terragrunt-destroy-staging:
     name: Staging
     uses: ./.github/workflows/terragrunt-destroy.yml
     if: "${{ github.event.inputs.ENV == 'staging' }}"
