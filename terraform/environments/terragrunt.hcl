@@ -38,14 +38,14 @@ EOF
 
 # Configure Terragrunt to automatically store tfstate files in an S3 bucket
 remote_state {
-  # backend = "s3"
-  # config = {
-  #   encrypt = true
-  #   bucket  = "apollo-infra-${local.account_name}"
-  #   key     = "${path_relative_to_include()}/terraform.tfstate"
-  #   region  = "ap-southeast-1"
-     // dynamodb_table = "apollo-infra-${local.account_name}-locks"
-  # }
+  backend = "s3"
+  config = {
+    encrypt = true
+    bucket  = "demo-infra-${local.account_name}"
+    key     = "${path_relative_to_include()}/terraform.tfstate"
+    region  = "ap-southeast-1"
+    // dynamodb_table = "apollo-infra-${local.account_name}-locks"
+  }
   generate = {
     path      = "backend.tf"
     if_exists = "overwrite_terragrunt"
