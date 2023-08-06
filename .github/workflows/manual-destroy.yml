@@ -22,6 +22,7 @@ jobs:
       ACCOUNT_ID: '699193863488'
       REGION: ap-southeast-1
       ENV: dev
+      IMAGE: ghcr.io/thedao032/demo-infrastructure
     secrets: inherit
 
   terragrunt-destroy-staging:
@@ -33,6 +34,7 @@ jobs:
       ACCOUNT_ID: '699193863488'
       REGION: ap-southeast-1
       ENV: staging
+      IMAGE: ghcr.io/thedao032/demo-infrastructure
     secrets: inherit
 
   # terragrunt-apply-prod:
