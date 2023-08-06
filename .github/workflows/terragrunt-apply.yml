@@ -33,7 +33,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
-          role-to-assume: arn:aws:iam::${{ inputs.ACCOUNT_ID }}:role/AdminAccess
+          role-to-assume: arn:aws:iam::${{ inputs.ACCOUNT_ID }}:role/DevAccess
           role-duration-seconds: 3600
           role-session-name: github
 
