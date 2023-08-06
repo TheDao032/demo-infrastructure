@@ -6,11 +6,6 @@ on:
       - main
 
 jobs:
-  buiild-image:
-    name: Build image
-    uses: ./.github/workflows/image.yml
-    secrets: inherit
-
   terragrunt-plan-dev:
     name: Dev
     uses: ./.github/workflows/terragrunt-plan.yml
