@@ -37,7 +37,7 @@ jobs:
           role-duration-seconds: 3600
           role-session-name: github
 
-      - name: Apply
+      - name: Destroy
         id: terragrunt-apply
         working-directory: terraform/environments/${{ inputs.ACCOUNT }}/${{ inputs.REGION }}/${{ inputs.ENV }}/
         run: |
