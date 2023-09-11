@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true # default = false
 
   tags = merge(
-    { Name = var.env },
+    { Name = var.environment },
     var.tags
   )
 }
