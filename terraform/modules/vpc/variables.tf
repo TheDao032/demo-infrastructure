@@ -8,7 +8,7 @@ variable "export_name" {
 }
 
 variable "vpc_cidr_block" {
-  type = list(any)
+  type = string
 }
 
 variable "private_cidr" {
