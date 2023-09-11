@@ -2,4 +2,12 @@
 # feed forward to the child modules.
 locals {
   environment = "dev"
+  azs = ["ap-southeast-1a", "ap-southeast-1b"]
+  vpc_cidr_block = "10.1.0.0/16"
+  public_cidr = ["10.1.10.0/24", "10.1.11.0/24"]
+  private_cidr = ["10.1.20.0/24", "10.1.21.0/24"]
+
+  tags = {
+    CreateBy = "Terraform"
+  }
 }
