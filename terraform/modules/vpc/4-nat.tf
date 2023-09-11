@@ -1,7 +1,6 @@
 resource "aws_eip" "nat" {
   count  = length(var.public_cidr)
   domain = "vpc"
-  vpc    = true
 
   tags = merge(
     { Name = "${var.environment}-NAT-${count.index}" },
